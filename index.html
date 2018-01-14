@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="ru" >
+<head>
+  <meta charset="UTF-8">
+  <title>Тест на распознавание цифр от символов</title>
+  <link rel="stylesheet" href="css/reset.css">
+  <link rel="stylesheet" href="css/style.css">
+</head>
+
+<body>
+<div id="app">
+  <section class="main-menu" v-if="inMenu">
+    <h1 class="title">Введите данные для теста:</h1>
+    <div class="input-block">
+      <p>Максимальное количество цифр: </p>
+      <input type="number" v-model="maxNumbers">
+    </div>
+    <div class="input-block">
+      <p>Скорость: </p>
+      <input type="number" v-model="delay">
+    </div>
+    <div class="buttons">
+      <button class="btn" @click="toTest()">Начать тест</button>
+    </div>
+  </section>
+  <section class="test" v-if="inTest">
+    <h2 class="title2">Количество цифр: {{maxNumbers}} Скорость: {{delay}} </h2>
+    <h1 class="title">Посчитайте количество цифр:</h1>
+    <div class="main-block">{{ elem }}</div>
+    <div class="buttons">
+      <button class="btn" @click="startStep()">Запуск</button>
+      <button class="btn" v-if="isAnswerButtonShown" @click="showAnswer()">Ответ</button>
+      <button class="btn" @click="toMenu()">В меню</button>
+    </div>
+    <div v-if="isAnswerShown" class="answers">
+      <div v-if="isAnswerArray" v-for="item in answer" class="answer">{{ item }}</div>
+      <div v-if="!isAnswerArray">Не было цифр</div>
+    </div>
+  </section>
+</div>
+
+<script src="js/jquery-3.2.1.min.js"></script>
+<script src="js/vue.js"></script>
+<script src="js/index.js"></script>
+
+</body>
+</html>
